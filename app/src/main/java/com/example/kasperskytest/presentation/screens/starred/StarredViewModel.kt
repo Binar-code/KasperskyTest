@@ -1,6 +1,5 @@
 package com.example.kasperskytest.presentation.screens.starred
 
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn

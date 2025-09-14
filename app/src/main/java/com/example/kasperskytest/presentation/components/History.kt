@@ -14,10 +14,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.domain.models.HistoryItem
 import com.example.kasperskytest.R
-import com.example.kasperskytest.presentation.screens.main.MainScreenUiState
 
 @Composable
 fun History(
