@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KasperskyTest</string>
+    <string name="title_english">АНГЛИЙСКИЙ</string>
+    <string name="input_placeholder">Введите слово</string>
+    <string name="title_russian">РУССКИЙ</string>
+    <string name="history">История:</string>
+    <string name="translator">Переводчик</string>
+    <string name="starred">Избранное</string>
 </resources>
