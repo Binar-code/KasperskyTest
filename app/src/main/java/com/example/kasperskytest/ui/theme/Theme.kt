@@ -13,6 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     surface = DarkGray,
+    background = DarkGray,
     primary = LightGray,
     secondary = LightGray61,
     onPrimary = Color.White,
@@ -21,26 +22,19 @@ private val DarkColorScheme = darkColorScheme(
 
 private val LightColorScheme = lightColorScheme(
     surface = Cream,
+    background = Cream,
     primary = Color.White,
-    secondary = LightGray61,
+    secondary = SecondaryCream,
     onPrimary = Color.Black,
-    onSecondary = LightGray,
+    onSecondary = LightGray66,
 )
 
 @Composable
 fun KasperskyTestTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val context = LocalContext.current
-    val colorScheme =
-        if (dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (darkTheme) dynamicDarkColorScheme(context)
-            else dynamicLightColorScheme(context)
-        } else {
-            if (darkTheme) DarkColorScheme else LightColorScheme
-        }
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,

@@ -5,7 +5,7 @@ import com.example.domain.models.HistoryItem
 import kotlinx.coroutines.flow.Flow
 
 interface LocalStorageRepository {
-    suspend fun insertItem(query: HistoryItem)
+    suspend fun upsertItem(query: HistoryItem)
 
     suspend fun deleteItem(query: HistoryItem)
 

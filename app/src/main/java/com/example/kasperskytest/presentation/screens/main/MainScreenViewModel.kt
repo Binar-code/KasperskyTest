@@ -1,5 +1,6 @@
 package com.example.kasperskytest.presentation.screens.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -16,9 +17,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -33,9 +32,6 @@ class MainScreenViewModel(
     private val _uiState = MutableStateFlow(MainScreenUiState())
     val uiState: StateFlow<MainScreenUiState> = _uiState
 
-    private val _uiEffect = MutableSharedFlow<MainScreenEffects>()
-    val uiEffect: SharedFlow<MainScreenEffects> = _uiEffect
-
     var translateJob: Job? = null
 
     fun translateInput(query: String) {
@@ -49,15 +45,18 @@ class MainScreenViewModel(
                     is Result.Error -> {
                         when (res.error) {
                             is NetworkError.Http -> {
-                                _uiState.update { it.copy(error = UiError.Http((res.error as NetworkError.Http).body)) }
+                                _uiState.update { it.copy(error =
+                                    MainScreenError.Http((res.error as NetworkError.Http).body)) }
                             }
                             is NetworkError.Unexpected -> {
-                                _uiState.update { it.copy(error = UiError.Unexpected) }
+                                _uiState.update { it.copy(error = MainScreenError.Unexpected) }
                             }
                             NetworkError.NoConnection -> {
-                                _uiState.update { it.copy(error = UiError.NoInternet) }
+                                _uiState.update { it.copy(error = MainScreenError.NoInternet) }
                             }
                         }
+                        delay(5000)
+                        translateInput(query)
                     }
                     is Result.Ok<Translation> -> {
                         _uiState.update { it.copy(translation = res.value.text) }
@@ -95,6 +94,10 @@ class MainScreenViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             star(item, !item.isStarred)
         }
+    }
+
+    fun clearError() {
+        _uiState.update { it.copy(error = null) }
     }
 
     private fun normalize(query: String): String = query.trim().lowercase()

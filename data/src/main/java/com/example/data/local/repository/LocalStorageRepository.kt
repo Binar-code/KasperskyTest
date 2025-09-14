@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 class LocalStorageRepositoryImpl(
     private val dao: WordDao
 ) : LocalStorageRepository {
-    override suspend fun insertItem(query: HistoryItem) {
+    override suspend fun upsertItem(query: HistoryItem) {
         dao.insert(query.toEntity())
     }
 

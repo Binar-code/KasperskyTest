@@ -23,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.kasperskytest.R
 import com.example.kasperskytest.presentation.screens.main.Main
+import com.example.kasperskytest.presentation.screens.starred.Starred
 import com.example.kasperskytest.ui.theme.KasperskyTestTheme
 
 private object Routes {
@@ -65,7 +66,7 @@ fun App() {
             }
 
             composable(Routes.STARRED) {
-
+                Starred()
             }
         }
     }

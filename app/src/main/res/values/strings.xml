@@ -6,4 +6,9 @@
     <string name="history">История:</string>
     <string name="translator">Переводчик</string>
     <string name="starred">Избранное</string>
+    <string name="starred_label">Избранное:</string>
+    <string name="empty">Пока что здесь пусто</string>
+    <string name="http_error">Ошибка сервера</string>
+    <string name="network_error">Нет подключения к интернету</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
 </resources>
